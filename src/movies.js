@@ -136,8 +136,8 @@ function bestYearAvg(moviesArray) {
 
   const yearArr = Object.keys(yearsAndScores);
 
-  function sum(acc, currValue) {
-    return acc + currValue;
+  function sum(accumulator, currentValue) {
+    return accumulator + currentValue;
   }
 
   const yearsAndAverages = yearArr.map((year, idx) => {
