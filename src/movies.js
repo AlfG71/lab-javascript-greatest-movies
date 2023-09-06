@@ -2062,7 +2062,17 @@ function dramaMoviesScore(moviesArray) {
 }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear(moviesArray) {}
+function orderByYear(moviesArray) {
+  let copyArray = moviesArray.slice();
+
+  return copyArray.sort((a, b) => {
+    if (a.year === b.year) {
+      return a.title.localeCompare(b.title);
+    } else {
+      return a.year - b.year;
+    }
+  });
+}
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(moviesArray) {}
@@ -2073,8 +2083,21 @@ function turnHoursToMinutes(moviesArray) {}
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg(moviesArray) {}
 
-console.log(dramaMoviesScore([
-  { genre: ['Action'], score: 8 },
-  { genre: ['Romance'], score: 9 },
-  { genre: ['Sci-Fi'], score: 7 }
-]));
+console.log(orderByYear([
+  {
+  title: 'The Godfather',
+  year: 1974,
+  director: 'Francis Ford Coppola',
+  duration: '2h 55min',
+  genre: ['Crime', 'Drama'],
+  score: 9.2
+},
+{
+  title: 'a Gadfather: Part II',
+  year: 1974,
+  director: 'Francis Ford Coppola',
+  duration: '3h 22min',
+  genre: ['Crime', 'Drama'],
+  score: 9
+}]
+));
