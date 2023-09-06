@@ -108,4 +108,59 @@ function turnHoursToMinutes(moviesArray) {
 }
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg(moviesArray) {}
+function bestYearAvg(moviesArray) {
+  if (!moviesArray.length) return null;
+
+  if (moviesArray.length === 1) {
+    const movie = moviesArray[0]
+    const year = movie.year;
+    const score = movie.score;
+
+    return `The best year was ${year} with an average score of ${score}`
+  }
+
+  const yearsAndScores = {
+  }
+
+  moviesArray.forEach(movie => {
+    const yearsArr = Object.keys(yearsAndScores);
+    const score = movie.score;
+    const currentYear = movie.year;
+
+    if (yearsAndScores[currentYear]) {
+      yearsAndScores[currentYear].push(score);
+    } else {
+      yearsAndScores[currentYear] = [score];
+    }
+  });
+
+  const yearArr = Object.keys(yearsAndScores);
+
+  function sum(acc, currValue) {
+    return acc + currValue;
+  }
+
+  const yearsAndAverages = yearArr.map((year, idx) => {
+    const currentLength = yearsAndScores[year].length;
+    const avgScore = yearsAndScores[year].reduce(sum) / currentLength;
+    const currentYear = yearArr[idx];
+    const currentObj = {};
+
+    currentObj[currentYear] = avgScore;
+
+    return currentObj;
+  });
+
+  const bestYear = yearsAndAverages.sort((currentYearAvg1, currentYearAvg2) => {
+    if (currentYearAvg2.score !== currentYearAvg1.score) {
+    return currentYearAvg2.score - currentYearAvg1.score;
+    } else {
+      return currentYearAvg1.year - currentYearAvg2.year;
+    }
+  });
+
+  const year = Object.keys(bestYear[0]);
+  const score = Object.values(bestYear[0]);
+
+  return `The best year was ${year} with an average score of ${score}`;
+}
